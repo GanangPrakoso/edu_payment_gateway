@@ -43,7 +43,6 @@ app.post("/login", async (req, res, next) => {
     if (!passwordValidation) {
       throw { name: "invalid_email/password" };
     }
-
     const access_token = createToken({
       id: findUser.id,
     });
