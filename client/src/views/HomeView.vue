@@ -27,7 +27,18 @@ export default {
       if (!this.counterStore.user.isSubscribed) {
         this.counterStore.subscribe();
       } else {
-        Swal.fire("Seriously?", "logout and go play outside", "question");
+        Swal.fire({
+          title: "Seriously?",
+          text: "Logout and go play outside pls",
+          icon: "question",
+          showDenyButton: true,
+          confirmButtonText: "Logout",
+          denyButtonText: `Nope I want to be here`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.logout();
+          }
+        });
       }
     },
   },
