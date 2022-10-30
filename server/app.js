@@ -137,6 +137,9 @@ app.use((err, req, res, next) => {
   } else if (err.name === "already_subscribed") {
     code = 400;
     message = "You already a subscriber";
+  } else if (err.name === "invalid_email/password") {
+    code = 401;
+    message = "invalid email/password";
   }
 
   res.status(code).json({ message });
