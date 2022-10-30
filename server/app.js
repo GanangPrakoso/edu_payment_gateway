@@ -9,6 +9,9 @@ const PORT = 3000;
 const { User } = require("./models");
 const { comparePass, createToken, readPayload } = require("./helpers");
 
+// midtrans
+const midtransClient = require("midtrans-client");
+
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -100,6 +103,15 @@ app.patch("/subscription", async (req, res, next) => {
       throw { name: "already_subscribed" };
     }
 
+    // midtrans
+    let snap = new midtransClient.Snap({
+      // Set to true if you want Production Environment (accept real transaction).
+      isProduction: false,
+      serverKey: "YOUR_SERVER_KEY",
+    });
+
+    // ==================
+
     await User.update(
       { isSubscribed: true },
       {
@@ -108,6 +120,8 @@ app.patch("/subscription", async (req, res, next) => {
         },
       }
     );
+
+    // ==================
 
     res
       .status(200)
