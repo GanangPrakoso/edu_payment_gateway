@@ -151,9 +151,7 @@ app.post("/generate-transaction-token", async (req, res, next) => {
 
     const transaction = await snap.createTransaction(parameter);
 
-    let transactionToken = transaction;
-    // console.log("transactionToken:", transactionToken);
-    res.status(201).json({ transactionToken });
+    res.status(201).json({ transaction });
   } catch (err) {
     next(err);
   }
