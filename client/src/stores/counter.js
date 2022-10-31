@@ -64,7 +64,7 @@ export const useCounterStore = defineStore("counter", {
         const cb = this.changePaymentStatus;
 
         // munculin window nya midtrans
-        window.snap.pay(data.transactionToken.token, {
+        window.snap.pay(data.transaction.token, {
           onSuccess: function (result) {
             // jika sukses maka rubah status subscription/pembayaran via hit api di server
             // handler lebih baik dibuat dalam action method dan di tampung dalam variable
