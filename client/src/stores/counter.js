@@ -37,9 +37,42 @@ export const useCounterStore = defineStore("counter", {
       }
     },
 
+    async changePaymentStatus() {
+      try {
+        await axios({
+          url: this.baseUrl + "/subscription",
+          method: "patch",
+          headers: { access_token: localStorage.access_token },
+        });
+
+        this.getProfile();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
     async subscribe() {
       try {
-        console.log("integrate here!");
+        const { data } = await axios({
+          url: this.baseUrl + "/generate-transaction-token",
+          method: "post",
+          headers: {
+            access_token: localStorage.access_token,
+          },
+        });
+
+        const cb = this.changePaymentStatus;
+
+        // munculin window nya midtrans
+        window.snap.pay(data.transactionToken.token, {
+          onSuccess: function (result) {
+            // jika sukses maka rubah status subscription/pembayaran via hit api di server
+            // handler lebih baik dibuat dalam action method dan di tampung dalam variable
+            // karena didalam window.snap scope nya berbeda
+
+            cb();
+          },
+        });
       } catch (err) {
         console.log(err);
       }

@@ -20,7 +20,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.access_token;
-  console.log(isAuthenticated);
   to.name !== "login" && !isAuthenticated ? next({ name: "login" }) : next();
 });
 
