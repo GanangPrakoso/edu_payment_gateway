@@ -95,11 +95,6 @@ app.get("/profile", async (req, res, next) => {
 
 app.patch("/subscription", async (req, res, next) => {
   try {
-    const findUser = await User.findByPk(req.user.id);
-    if (findUser.isSubscribed) {
-      throw { name: "already_subscribed" };
-    }
-
     await User.update(
       { isSubscribed: true },
       {
