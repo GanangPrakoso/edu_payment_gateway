@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import router from "../router";
+import Swal from "sweetalert2";
 
 export const useCounterStore = defineStore("counter", {
   state: () => {
@@ -39,7 +39,7 @@ export const useCounterStore = defineStore("counter", {
 
     async subscribe() {
       try {
-        console.log("integrate here!");
+        Swal.fire("Feature not yet implemented");
       } catch (err) {
         console.log(err);
       }

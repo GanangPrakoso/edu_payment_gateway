@@ -23,6 +23,13 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          email: "user2@mail.com",
+          password: hashPass("user2"),
+          isSubscribed: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
