@@ -125,7 +125,7 @@ app.post("/generate-token/midtrans", async (req, res, next) => {
   // INTEGRATE MIDTRANS HERE!
 });
 
-app.patch("/subscription", async (req, res, next) => {
+app.patch("/user", async (req, res, next) => {
   try {
     await User.update(
       { isSubscribed: true },
