@@ -60,12 +60,14 @@ app.post("/login", async (req, res, next) => {
 // AUTHENTICATION
 app.use(async (req, res, next) => {
   try {
-    const { access_token } = req.headers;
+    let { authorization } = req.headers;
     if (!access_token) {
       throw { name: "invalid_token" };
     }
 
-    const payload = readPayload(access_token);
+    authorization = authorization.split(" ")[1];
+
+    const payload = readPayload(authorization);
 
     const user = await User.findByPk(payload.id);
     if (!user) {
@@ -82,7 +84,7 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.get("/profile", async (req, res, next) => {
+app.get("/user", async (req, res, next) => {
   try {
     const findUser = await User.findByPk(req.user.id);
     res
