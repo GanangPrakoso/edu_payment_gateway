@@ -1,0 +1,174 @@
+.wrapper {
+  width: 40vw;
+  margin: auto;
+  margin-top: 30vh;
+}
+
+label {
+  color: white;
+}
+
+body {
+  background-color: #211a1e;
+  color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper-home {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  align-items: center;
+  padding-left: 2vw;
+}
+.regular-pt-sans {
+  font-family: "PT Sans", sans-serif;
+  color: aliceblue;
+}
+
+.small-pt-sans {
+  font-family: "PT Sans", sans-serif;
+  color: pink;
+}
+
+.small-pt-sans:hover {
+  color: #ff3399;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.small-small-pt-sans {
+  margin-top: 20px;
+  font-family: "PT Sans", sans-serif;
+  color: gray;
+}
+
+.small-small-pt-sans:hover {
+  color: #6666ff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.rainbow {
+  text-align: center;
+  font-size: 65px;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 5px;
+  animation: colorRotate 2s linear 0s infinite;
+}
+
+.rainbow-fast {
+  text-align: center;
+  font-size: 65px;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 5px;
+  animation: colorRotate 0.6s linear 0s infinite;
+}
+
+@keyframes colorRotate {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
+}
+
+.home-banner {
+  width: 80%;
+  height: 30vh;
+  background-color: white;
+  margin-bottom: 6vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://p4.wallpaperbetter.com/wallpaper/13/10/529/comedy-dark-horror-musical-wallpaper-preview.jpg");
+  background-size: cover;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-banner {
+  font-family: "Bebas Neue", cursive;
+  font-weight: 300;
+  font-size: 130px;
+  color: #ffffff;
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0px 40px;
+  align-content: flex-start;
+}
+
+#movie {
+  min-height: 100vh;
+  padding-top: 10vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./assets/home_bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0px 40px;
+  align-content: flex-start;
+}
+
+.movie-container {
+  width: 150px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  transition: transform 0.5s;
+  overflow: hidden;
+  cursor: pointer;
+}
+.movie-card {
+  height: 220px;
+  width: 150px;
+  background-size: contain;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-container:hover {
+  transform: scale(1.1);
+}
+
+.card-font {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}

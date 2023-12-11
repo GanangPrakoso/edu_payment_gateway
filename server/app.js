@@ -8,6 +8,7 @@ const cors = require("cors");
 const PORT = 3000;
 const { User } = require("./models");
 const { comparePass, createToken, readPayload } = require("./helpers");
+const axios = require("axios");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -61,7 +62,7 @@ app.post("/login", async (req, res, next) => {
 app.use(async (req, res, next) => {
   try {
     let { authorization } = req.headers;
-    if (!access_token) {
+    if (!authorization) {
       throw { name: "invalid_token" };
     }
 
@@ -84,6 +85,31 @@ app.use(async (req, res, next) => {
   }
 });
 
+app.get("/movies", async (req, res, next) => {
+  try {
+    const { page } = req.query;
+
+    const { data } = await axios({
+      url: "https://api.themoviedb.org/3/movie/now_playing?language=en-US",
+      params: {
+        api_key: "540a1d2ead1eca8c7583daff99547848",
+        page,
+      },
+    });
+
+    let movieLists = data.results.map((el) => {
+      return {
+        id: el.id,
+        title: el.title,
+        image: "https://image.tmdb.org/t/p/w500" + el.poster_path,
+      };
+    });
+    res.status(200).json(movieLists);
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.get("/user", async (req, res, next) => {
   try {
     const findUser = await User.findByPk(req.user.id);
@@ -93,6 +119,10 @@ app.get("/user", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+app.post("/generate-token/midtrans", async (req, res, next) => {
+  // INTEGRATE MIDTRANS HERE!
 });
 
 app.patch("/subscription", async (req, res, next) => {
